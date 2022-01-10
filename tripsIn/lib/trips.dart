@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:trips/home.dart';
 import 'package:trips/search.dart';
@@ -29,20 +30,33 @@ class _TripsState extends State<Trips> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: widgetsChildren[indexTap],
-      bottomNavigationBar: Theme(
-          data: Theme.of(context)
-              .copyWith(canvasColor: Colors.white, primaryColor: Colors.purple),
-          child: BottomNavigationBar(
-            onTap: onTapTapped,
-            currentIndex: indexTap,
-            items: [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.search), label: 'Buscar'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person), label: 'Perfil'),
-            ],
-          )),
+      // bottomNavigationBar: Theme(
+      //     data: Theme.of(context)
+      //         .copyWith(canvasColor: Colors.white, primaryColor: Colors.purple),
+      //     child: BottomNavigationBar(
+      //       onTap: onTapTapped,
+      //       currentIndex: indexTap,
+      //       items: [
+      //         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
+      //         BottomNavigationBarItem(
+      //             icon: Icon(Icons.search), label: 'Buscar'),
+      //         BottomNavigationBarItem(
+      //             icon: Icon(Icons.person), label: 'Perfil'),
+      //       ],
+      //     )
+      // ),
+      bottomNavigationBar: CurvedNavigationBar(
+        height: 50.0,
+        color: Colors.white,
+        backgroundColor: Color(0xFF192BC2),
+        onTap: onTapTapped,
+        animationDuration: Duration(milliseconds: 500),
+        items: [
+          Icon(Icons.home),
+          Icon(Icons.search),
+          Icon(Icons.person),
+        ],
+      ),
     );
   }
 }

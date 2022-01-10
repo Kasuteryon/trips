@@ -6,13 +6,14 @@ class GradientBack extends StatelessWidget {
   //const GradientBack({Key? key}) : super(key: key);
 
   String title = "Popular";
+  double altura = 250.0;
 
-  GradientBack(this.title);
+  GradientBack(this.title, this.altura);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250.0,
+      height: altura,
       decoration: BoxDecoration(
           gradient: LinearGradient(
               colors: [
