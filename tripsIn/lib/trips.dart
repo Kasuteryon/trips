@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:dot_navigation_bar/dot_navigation_bar.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:trips/home.dart';
 import 'package:trips/search.dart';
@@ -30,6 +32,36 @@ class _TripsState extends State<Trips> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: widgetsChildren[indexTap],
+      extendBody: true,
+
+      // bottomNavigationBar: SalomonBottomBar(
+      //   currentIndex: indexTap,
+      //   onTap: onTapTapped,
+      //   margin: EdgeInsets.all(15.0),
+      //   items: [
+      //     /// Home
+      //     SalomonBottomBarItem(
+      //       icon: Icon(Icons.home),
+      //       title: Text("Inicio"),
+      //       selectedColor: Colors.blue,
+      //     ),
+
+      //     /// Search
+      //     SalomonBottomBarItem(
+      //       icon: Icon(Icons.search),
+      //       title: Text("Buscar"),
+      //       selectedColor: Colors.teal,
+      //     ),
+
+      //     /// Profile
+      //     SalomonBottomBarItem(
+      //       icon: Icon(Icons.person),
+      //       title: Text("Perfil"),
+      //       selectedColor: Colors.orange,
+      //     ),
+      //   ],
+      // ),
+
       // bottomNavigationBar: Theme(
       //     data: Theme.of(context)
       //         .copyWith(canvasColor: Colors.white, primaryColor: Colors.purple),
@@ -45,16 +77,41 @@ class _TripsState extends State<Trips> {
       //       ],
       //     )
       // ),
-      bottomNavigationBar: CurvedNavigationBar(
-        height: 50.0,
-        color: Colors.white,
-        backgroundColor: Color(0xFF192BC2),
+
+      // DOT FLOATING NAVIGATION
+      bottomNavigationBar: DotNavigationBar(
+        currentIndex: indexTap,
         onTap: onTapTapped,
-        animationDuration: Duration(milliseconds: 500),
+        enableFloatingNavBar: true,
+        marginR: EdgeInsets.only(right: 25.0, left: 25.0, bottom: 25.0),
+        borderRadius: 20.0,
+        boxShadow: [
+          BoxShadow(
+            color: Color(0XFF7090B0),
+            spreadRadius: 0.10,
+            blurRadius: 15.0,
+            offset: Offset(0.0, 5.5),
+          )
+        ],
+        // dotIndicatorColor: Colors.black,
         items: [
-          Icon(Icons.home),
-          Icon(Icons.search),
-          Icon(Icons.person),
+          /// Home
+          DotNavigationBarItem(
+            icon: Icon(Icons.home),
+            selectedColor: Colors.blue,
+          ),
+
+          /// Search
+          DotNavigationBarItem(
+            icon: Icon(Icons.search),
+            selectedColor: Colors.teal,
+          ),
+
+          /// Profile
+          DotNavigationBarItem(
+            icon: Icon(Icons.person),
+            selectedColor: Colors.orange,
+          ),
         ],
       ),
     );

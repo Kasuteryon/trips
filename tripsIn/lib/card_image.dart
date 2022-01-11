@@ -22,9 +22,11 @@ class CardImage extends StatelessWidget {
           shape: BoxShape.rectangle,
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: Colors.black38,
-                blurRadius: 15.0,
-                offset: Offset(0.0, 7.0))
+              color: Color(0XFF7090B0),
+              spreadRadius: 0.10,
+              blurRadius: 15.0,
+              offset: Offset(0.0, 5.5),
+            )
           ]),
     );
 
