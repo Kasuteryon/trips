@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:trips/home.dart';
-import 'package:trips/profile.dart';
-import 'package:trips/search.dart';
+import 'package:trips/Place/ui/screens/home.dart';
+import 'package:trips/User/ui/screens/profile.dart';
+import 'package:trips/Place/ui/screens/search.dart';
 
 class TripsCupertino extends StatelessWidget {
   const TripsCupertino({Key? key}) : super(key: key);

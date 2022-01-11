@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:trips/card_image_profile.dart';
-import 'package:trips/gradient_back.dart';
+import 'package:trips/User/ui/widgets/card_image_profile.dart';
+import 'package:trips/widgets/gradient_back.dart';
 //import 'package:trips/card_photo_detail.dart';
 import 'profile_info.dart';
 

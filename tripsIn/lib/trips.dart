@@ -4,9 +4,9 @@ import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import 'package:flutter/material.dart';
-import 'package:trips/home.dart';
-import 'package:trips/search.dart';
-import 'package:trips/profile.dart';
+import 'package:trips/Place/ui/screens/home.dart';
+import 'package:trips/Place/ui/screens/search.dart';
+import 'package:trips/User/ui/screens/profile.dart';
 
 class Trips extends StatefulWidget {
   const Trips({Key? key}) : super(key: key);

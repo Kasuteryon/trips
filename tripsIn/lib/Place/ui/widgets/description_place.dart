@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:trips/button.dart';
+import 'package:trips/widgets/button.dart';
 
 class DescriptionPlace extends StatelessWidget {
   //const DescriptionPlace({Key? key}) : super(key: key);
