@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "210703201839",
+    "project_id": "trips-30ffb",
+    "storage_bucket": "trips-30ffb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210703201839:android:4579cb9edd43f5d7e438da",
+        "android_client_info": {
+          "package_name": "com.xeiccx.trips"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210703201839-ip1vmsig5hb633li603j0jcfbnb852vo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xeiccx.trips",
+            "certificate_hash": "4f3ca895de13c699262a472161dc668c1ca6d3ad"
+          }
+        },
+        {
+          "client_id": "210703201839-acbadcrmfhi6t55fi06en3ftkm5uie54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoMh3KcxyiuMEYqx1t_JwKSLcRG80lWnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210703201839-acbadcrmfhi6t55fi06en3ftkm5uie54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

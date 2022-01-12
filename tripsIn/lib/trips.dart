@@ -83,7 +83,7 @@ class _TripsState extends State<Trips> {
         currentIndex: indexTap,
         onTap: onTapTapped,
         enableFloatingNavBar: true,
-        marginR: EdgeInsets.only(right: 25.0, left: 25.0, bottom: 25.0),
+        marginR: EdgeInsets.only(right: 40.0, left: 40.0, bottom: 25.0),
         borderRadius: 20.0,
         boxShadow: [
           BoxShadow(

@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:trips/Place/bloc/bloc_place.dart';
+import 'package:trips/User/bloc/bloc_user.dart';
 import 'package:trips/trips.dart';
 import 'package:trips/trips_cupertino.dart';
 
@@ -19,15 +22,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Trips',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: Trips()
+    return BlocProvider(
+      child: MaterialApp(
+          title: 'Trips',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(primarySwatch: Colors.blue),
+          home: Trips()
 
-        //const MyHomePage(title: 'Flutter Demo Home Page'),
-        );
+          //const MyHomePage(title: 'Flutter Demo Home Page'),
+          ),
+      bloc: UserBloc(),
+    );
   }
 }
