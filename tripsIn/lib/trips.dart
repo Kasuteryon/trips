@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:trips/Place/ui/screens/home.dart';
 import 'package:trips/Place/ui/screens/search.dart';
+import 'package:trips/User/bloc/bloc_user.dart';
 import 'package:trips/User/ui/screens/profile.dart';
 
 class Trips extends StatefulWidget {
@@ -21,7 +23,7 @@ class _TripsState extends State<Trips> {
   final List<Widget> widgetsChildren = [
     HomeTrips(),
     SearcTrips(),
-    ProfileTrips()
+    BlocProvider<UserBloc>(child: ProfileTrips(), bloc: UserBloc())
   ];
 
   void onTapTapped(int index) {
@@ -34,50 +36,6 @@ class _TripsState extends State<Trips> {
       body: widgetsChildren[indexTap],
       extendBody: true,
 
-      // bottomNavigationBar: SalomonBottomBar(
-      //   currentIndex: indexTap,
-      //   onTap: onTapTapped,
-      //   margin: EdgeInsets.all(15.0),
-      //   items: [
-      //     /// Home
-      //     SalomonBottomBarItem(
-      //       icon: Icon(Icons.home),
-      //       title: Text("Inicio"),
-      //       selectedColor: Colors.blue,
-      //     ),
-
-      //     /// Search
-      //     SalomonBottomBarItem(
-      //       icon: Icon(Icons.search),
-      //       title: Text("Buscar"),
-      //       selectedColor: Colors.teal,
-      //     ),
-
-      //     /// Profile
-      //     SalomonBottomBarItem(
-      //       icon: Icon(Icons.person),
-      //       title: Text("Perfil"),
-      //       selectedColor: Colors.orange,
-      //     ),
-      //   ],
-      // ),
-
-      // bottomNavigationBar: Theme(
-      //     data: Theme.of(context)
-      //         .copyWith(canvasColor: Colors.white, primaryColor: Colors.purple),
-      //     child: BottomNavigationBar(
-      //       onTap: onTapTapped,
-      //       currentIndex: indexTap,
-      //       items: [
-      //         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-      //         BottomNavigationBarItem(
-      //             icon: Icon(Icons.search), label: 'Buscar'),
-      //         BottomNavigationBarItem(
-      //             icon: Icon(Icons.person), label: 'Perfil'),
-      //       ],
-      //     )
-      // ),
-
       // DOT FLOATING NAVIGATION
       bottomNavigationBar: DotNavigationBar(
         currentIndex: indexTap,
@@ -87,10 +45,15 @@ class _TripsState extends State<Trips> {
         borderRadius: 20.0,
         boxShadow: [
           BoxShadow(
-            color: Color(0XFF7090B0),
-            spreadRadius: 0.10,
-            blurRadius: 15.0,
-            offset: Offset(0.0, 5.5),
+            color: Colors.black12,
+            blurRadius: 20.0,
+            // shadow
+            spreadRadius: .5,
+            // set effect of extending the shadow
+            offset: Offset(
+              0.0,
+              5.0,
+            ),
           )
         ],
         // dotIndicatorColor: Colors.black,

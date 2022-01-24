@@ -1,4 +1,4 @@
-package com.example.trips
+package com.xeiccx.trips
 
 import io.flutter.embedding.android.FlutterActivity
 

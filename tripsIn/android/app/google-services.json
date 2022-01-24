@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "210703201839-ip1vmsig5hb633li603j0jcfbnb852vo.apps.googleusercontent.com",
+          "client_id": "210703201839-im07pv9vr47ud1cnahlbahms32etbuj1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.xeiccx.trips",
-            "certificate_hash": "4f3ca895de13c699262a472161dc668c1ca6d3ad"
+            "certificate_hash": "84a1aad04852508fc34d34b289c4354bf6fd305c"
           }
         },
         {
