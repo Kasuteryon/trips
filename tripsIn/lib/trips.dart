@@ -19,19 +19,26 @@ class Trips extends StatefulWidget {
 
 class _TripsState extends State<Trips> {
   int indexTap = 0;
-
-  final List<Widget> widgetsChildren = [
-    HomeTrips(),
-    SearcTrips(),
-    BlocProvider<UserBloc>(child: ProfileTrips(), bloc: UserBloc())
-  ];
+  UserBloc? userBloc;
 
   void onTapTapped(int index) {
     setState(() => indexTap = index);
+
+    @override
+    void initState() {
+      super.initState();
+      userBloc = UserBloc();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> widgetsChildren = [
+      HomeTrips(),
+      SearcTrips(),
+      BlocProvider<UserBloc>(child: ProfileTrips(), bloc: UserBloc())
+    ];
+
     return Scaffold(
       body: widgetsChildren[indexTap],
       extendBody: true,

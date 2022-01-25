@@ -1,15 +1,18 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:trips/User/bloc/bloc_user.dart';
+import 'package:trips/User/model/user.dart';
 
 class ProfileInfo extends StatelessWidget {
   //const ProfileInfo({ Key? key }) : super(key: key);
 
-  String pathImage = 'assets/img/lebni.jpg';
-  String name = "Lebni Escobar";
-  String details = "lebni123@gmail.com";
+  UserModel? user;
 
-  ProfileInfo(this.pathImage, this.name, this.details);
+  ProfileInfo(@required this.user);
+
+  UserBloc? userBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +23,14 @@ class ProfileInfo extends StatelessWidget {
       decoration: BoxDecoration(
           border: Border.all(width: 2, color: Colors.white),
           shape: BoxShape.circle,
-          image:
-              DecorationImage(image: AssetImage(pathImage), fit: BoxFit.cover)),
+          image: DecorationImage(
+              image: NetworkImage(user!.photoURL), fit: BoxFit.cover)),
     );
 
     final userName = Container(
       margin: EdgeInsets.only(left: 20.0, top: 130.0),
       child: Text(
-        name,
+        user!.name,
         textAlign: TextAlign.left,
         style: TextStyle(
             fontFamily: "Epilogue", fontSize: 20.0, color: Colors.white),
@@ -37,7 +40,7 @@ class ProfileInfo extends StatelessWidget {
     final userInfo = Container(
       margin: EdgeInsets.only(left: 20.0, top: 10.0),
       child: Text(
-        details,
+        user!.email,
         textAlign: TextAlign.left,
         style: TextStyle(
             fontFamily: "Epilogue", fontSize: 16.0, color: Color(0XFFa3a5a7)),

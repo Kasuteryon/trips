@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:trips/User/bloc/bloc_user.dart';
+import 'package:trips/User/model/user.dart';
 import 'package:trips/trips.dart';
 import 'package:trips/widgets/button_green.dart';
 import 'package:trips/widgets/gradient_back.dart';
@@ -17,9 +18,11 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   UserBloc? userBloc;
+  double? screenWidth;
 
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
     userBloc = BlocProvider.of(context);
     return _handleCurrentSession();
   }
@@ -43,19 +46,24 @@ class _SignInScreenState extends State<SignInScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          GradientBack("", double.infinity),
+          GradientBack(
+            altura: double.infinity,
+            title: "",
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                margin: EdgeInsets.only(right: 30.0, left: 30.0, bottom: 20.0),
-                child: Text(
-                  "¡Bienvenidos \n a su aplicación de viajes!",
-                  style: TextStyle(
-                      fontFamily: "Epilogue",
-                      fontSize: 37.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+              Flexible(
+                child: Container(
+                  width: screenWidth,
+                  child: Text(
+                    "¡Bienvenidos \n a su aplicación de viajes!",
+                    style: TextStyle(
+                        fontFamily: "Epilogue",
+                        fontSize: 37.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
               ButtonGreen(
@@ -65,6 +73,14 @@ class _SignInScreenState extends State<SignInScreen> {
                       print("................");
                       print(
                           "El usuario es ${user.additionalUserInfo?.profile}");
+
+                      userBloc?.updateUserData(UserModel(
+                          uid: user.user!.uid,
+                          name: user.user!.displayName!,
+                          email: user.user!.email!,
+                          photoURL: user.user!.photoURL!,
+                          myPlaces: [],
+                          myFavoritePlaces: []));
                     });
                   },
                   height: 60.0,
