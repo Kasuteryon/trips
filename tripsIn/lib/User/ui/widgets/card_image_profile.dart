@@ -91,7 +91,13 @@ class CardImageProfile extends StatelessWidget {
         image,
         Stack(
           alignment: Alignment(0.7, 0.7),
-          children: [detail, FloatingActionButtonGreen()],
+          children: [
+            detail,
+            FloatingActionButtonGreen(
+              iconData: Icons.favorite,
+              onPressed: () {},
+            )
+          ],
         )
       ],
     );

@@ -6,17 +6,14 @@ class ButtonPurple extends StatelessWidget {
   //onst ButtonPurple({ Key? key }) : super(key: key);
 
   String buttonText = "Navegar";
+  VoidCallback onPressed;
 
-  ButtonPurple(this.buttonText);
+  ButtonPurple({required this.buttonText, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Scaffold.of(context).hideCurrentSnackBar();
-        Scaffold.of(context)
-            .showSnackBar(SnackBar(content: Text("Navegando...")));
-      },
+      onTap: onPressed,
       child: Container(
         margin: EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
         height: 50.0,
@@ -36,7 +33,10 @@ class ButtonPurple extends StatelessWidget {
           child: Text(
             buttonText,
             style: TextStyle(
-                fontFamily: "Epilogue", fontSize: 18.0, color: Colors.white),
+                fontFamily: "Epilogue",
+                fontSize: 18.0,
+                color: Colors.white,
+                fontWeight: FontWeight.bold),
           ),
         ),
       ),

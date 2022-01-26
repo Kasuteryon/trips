@@ -75,7 +75,7 @@ class ProfileTrips extends StatelessWidget {
               mini: false,
               active: true,
               onPressed: () {
-                File img = File.fromUri(Uri.parse("./assets/img/rio.jpg"));
+                File img = File.fromUri(Uri.parse("./assets/img/san.jpg"));
                 Navigator.push(
                     context,
                     MaterialPageRoute(

@@ -6,15 +6,26 @@ import 'package:trips/widgets/fab_green.dart';
 class CardImage extends StatelessWidget {
   //const CardImage({Key? key}) : super(key: key);
 
-  String pathImage = "assets/img/omete.jpg";
+  String pathImage = "assets/img/san.jpg";
+  double height = 350.0;
+  double width = 250.0;
+  double left = 20.0;
+  VoidCallback onPressed;
+  final IconData iconData;
 
-  CardImage(this.pathImage);
+  CardImage(
+      {required this.pathImage,
+      required this.height,
+      required this.width,
+      required this.left,
+      required this.iconData,
+      required this.onPressed});
   @override
   Widget build(BuildContext context) {
     final card = Container(
-      height: 350.0,
-      width: 250.0,
-      margin: EdgeInsets.only(top: 80.0, left: 20.0),
+      height: height,
+      width: width,
+      margin: EdgeInsets.only(left: left),
       decoration: BoxDecoration(
           image:
               DecorationImage(image: AssetImage(pathImage), fit: BoxFit.cover),
@@ -37,7 +48,13 @@ class CardImage extends StatelessWidget {
 
     return Stack(
       alignment: Alignment(0.9, 1.1),
-      children: [card, FloatingActionButtonGreen()],
+      children: [
+        card,
+        FloatingActionButtonGreen(
+          iconData: iconData,
+          onPressed: () {},
+        )
+      ],
     );
   }
 }
