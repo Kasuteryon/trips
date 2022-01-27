@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "210703201839",
-    "project_id": "trips-30ffb",
-    "storage_bucket": "trips-30ffb.appspot.com"
+    "project_number": "30986903588",
+    "project_id": "trips2-4fcfe",
+    "storage_bucket": "trips2-4fcfe.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:210703201839:android:4579cb9edd43f5d7e438da",
+        "mobilesdk_app_id": "1:30986903588:android:07ed8bf346f6f0cb8db8b1",
         "android_client_info": {
           "package_name": "com.xeiccx.trips"
         }
       },
       "oauth_client": [
         {
-          "client_id": "210703201839-im07pv9vr47ud1cnahlbahms32etbuj1.apps.googleusercontent.com",
+          "client_id": "30986903588-mlfsdm3rrd35rba30m8houb3bglh85g8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.xeiccx.trips",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "210703201839-acbadcrmfhi6t55fi06en3ftkm5uie54.apps.googleusercontent.com",
+          "client_id": "30986903588-va5gk0vp1fmkrmdb4dinlljj4ae9an73.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAoMh3KcxyiuMEYqx1t_JwKSLcRG80lWnE"
+          "current_key": "AIzaSyCBVcI6QD4Idobm_-L5kRhrvMG9HIZ5tF4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "210703201839-acbadcrmfhi6t55fi06en3ftkm5uie54.apps.googleusercontent.com",
+              "client_id": "30986903588-va5gk0vp1fmkrmdb4dinlljj4ae9an73.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

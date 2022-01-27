@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:trips/widgets/fab_green.dart';
 
@@ -11,6 +13,7 @@ class CardImage extends StatelessWidget {
   double width = 250.0;
   double left = 20.0;
   VoidCallback onPressed;
+  bool isUploading;
   final IconData iconData;
 
   CardImage(
@@ -19,6 +22,7 @@ class CardImage extends StatelessWidget {
       required this.width,
       required this.left,
       required this.iconData,
+      required this.isUploading,
       required this.onPressed});
   @override
   Widget build(BuildContext context) {
@@ -27,8 +31,11 @@ class CardImage extends StatelessWidget {
       width: width,
       margin: EdgeInsets.only(left: left),
       decoration: BoxDecoration(
-          image:
-              DecorationImage(image: AssetImage(pathImage), fit: BoxFit.cover),
+          image: DecorationImage(
+              image: isUploading
+                  ? FileImage(File(pathImage))
+                  : AssetImage(pathImage) as ImageProvider,
+              fit: BoxFit.cover),
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           shape: BoxShape.rectangle,
           boxShadow: <BoxShadow>[

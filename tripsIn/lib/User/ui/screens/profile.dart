@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, curly_braces_in_flow_control_structures
 
-import 'dart:io';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:trips/Place/ui/screens/add_place_screen.dart';
 import 'package:trips/User/bloc/bloc_user.dart';
 import 'package:trips/User/model/user.dart';
@@ -75,14 +75,27 @@ class ProfileTrips extends StatelessWidget {
               mini: false,
               active: true,
               onPressed: () {
-                File img = File.fromUri(Uri.parse("./assets/img/san.jpg"));
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            AddPlaceScreen(image: img)));
+                final picker = ImagePicker();
 
-                print(img);
+                ImagePicker.platform
+                    .pickImage(source: ImageSource.camera)
+                    .then((image) {
+                  if (image != null) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                AddPlaceScreen(image: image)));
+
+                    print(image.path);
+                  }
+                }).catchError((onError) => print(onError));
+
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (BuildContext context) =>
+                //             AddPlaceScreen(image: img)));
               },
             ),
             CreateIconButton(
@@ -112,27 +125,33 @@ class ProfileTrips extends StatelessWidget {
             children: [
               ProfileInfo(user),
               widgetMenu,
-              Expanded(
-                child: ListView(
-                  padding: EdgeInsets.only(left: 12, right: 12),
-                  children: [
-                    CardImageProfile(
-                        "assets/img/ometepe.jpg",
-                        "Isla de Ometepe",
-                        "Déjate hechizar por la magia isleña que ometepe ofrece.",
-                        58000),
-                    CardImageProfile(
-                        "assets/img/peña.jpg",
-                        "Jinotega",
-                        "Descubre todo lo que Jinotega tiene por ofrecer.",
-                        678504),
-                    CardImageProfile("assets/img/san.jpg", "San Juan del Sur",
-                        "Arena, mar y sabor Nicaraguense.", 10000),
-                    CardImageProfile("assets/img/rio.jpg", "Rio San Juan",
-                        "Rio San Juan 100% Nicaraguense!.", 58000),
-                  ],
-                ),
-              )
+              StreamBuilder(
+                stream: userBloc!.placesStream,
+                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.none:
+                      return CircularProgressIndicator();
+                    case ConnectionState.waiting:
+                      return CircularProgressIndicator();
+                    case ConnectionState.done:
+                      return Expanded(
+                        child: ListView(
+                          padding: EdgeInsets.only(left: 12, right: 12),
+                          children: userBloc!.buildPlaces(snapshot.data!.docs),
+                        ),
+                      );
+                    case ConnectionState.active:
+                      return Expanded(
+                        child: ListView(
+                          padding: EdgeInsets.only(left: 12, right: 12),
+                          children: userBloc!.buildPlaces(snapshot.data!.docs),
+                        ),
+                      );
+                    default:
+                      return CircularProgressIndicator();
+                  }
+                },
+              ),
             ],
           ),
         ],

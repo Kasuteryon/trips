@@ -2,16 +2,22 @@
 
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:trips/Place/model/place.dart';
 import 'package:trips/Place/ui/widgets/card_image.dart';
 import 'package:trips/Place/ui/widgets/location_input.dart';
+import 'package:trips/User/bloc/bloc_user.dart';
 import 'package:trips/widgets/button.dart';
 import 'package:trips/widgets/gradient_back.dart';
 import 'package:trips/widgets/text_input.dart';
 import 'package:trips/widgets/title_header.dart';
 
 class AddPlaceScreen extends StatefulWidget {
-  File image;
+  PickedFile image;
 
   AddPlaceScreen({required this.image});
 
@@ -22,6 +28,7 @@ class AddPlaceScreen extends StatefulWidget {
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
   @override
   Widget build(BuildContext context) {
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
 
@@ -72,6 +79,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                     width: 400.0,
                     height: 250.0,
                     left: 0.0,
+                    isUploading: true,
                     onPressed: () {},
                   ),
                 ),
@@ -105,7 +113,43 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                   child: ButtonPurple(
                     buttonText: "Agregar lugar",
                     onPressed: () {
-                      
+                      // 1. Firebase Storage para
+                      // el URL de la imagen
+                      userBloc.currentUser.then((User? user) {
+                        if (user != null) {
+                          String uid = user.uid;
+                          String path = "$uid/${DateTime.now().toString()}.jpg";
+
+                          userBloc
+                              .uploadFile(path, widget.image)
+                              .then((UploadTask uploadTask) => {
+                                    uploadTask.then((TaskSnapshot snapshot) {
+                                      snapshot.ref
+                                          .getDownloadURL()
+                                          .then((urlImage) {
+                                        print(urlImage);
+
+                                        // 2.Cloud Firestore para
+                                        // el resto de campos
+
+                                        userBloc
+                                            .updatePlaceData(Place(
+                                                name:
+                                                    _controllerTitlePlace.text,
+                                                description:
+                                                    _controllerDescriptionPlace
+                                                        .text,
+                                                likes: 0,
+                                                uriImage: urlImage))
+                                            .whenComplete(() {
+                                          print("TERMINO CORRECTAMENTE");
+                                          Navigator.pop(context);
+                                        });
+                                      });
+                                    })
+                                  });
+                        }
+                      });
                     },
                   ),
                 )

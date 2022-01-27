@@ -9,9 +9,9 @@ class CardImageProfile extends StatelessWidget {
   String path = "assets/img/rio.jpg";
   String title = "Rio San Juan";
   String description = "Ven y visita El 'Castillo' en Rio San Juan.";
-  int steps = 100000;
 
-  CardImageProfile(this.path, this.title, this.description, this.steps);
+  CardImageProfile(
+      {required this.path, required this.title, required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class CardImageProfile extends StatelessWidget {
       width: 400.0,
       margin: EdgeInsets.only(top: 80.0, left: 10.0, right: 10.0),
       decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(path), fit: BoxFit.cover),
+          image: DecorationImage(image: NetworkImage(path), fit: BoxFit.cover),
           borderRadius: BorderRadius.all(Radius.circular(25.0)),
           shape: BoxShape.rectangle,
           boxShadow: <BoxShadow>[
@@ -32,9 +32,9 @@ class CardImageProfile extends StatelessWidget {
     );
 
     final detail = Container(
-        height: 150.0,
-        width: 400,
-        margin: EdgeInsets.only(right: 35.0, left: 35.0, bottom: 40.0),
+        height: 130.0,
+        width: 300,
+        margin: EdgeInsets.only(right: 35.0, left: 35.0, bottom: 70.0),
         padding: EdgeInsets.only(top: 20.0),
         decoration: BoxDecoration(
             color: Colors.white,
@@ -69,28 +69,15 @@ class CardImageProfile extends StatelessWidget {
                 textAlign: TextAlign.justify,
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(top: 20),
-              padding: EdgeInsets.only(right: 30.0, left: 30.0),
-              child: Text(
-                steps.toString() + " pasos",
-                style: TextStyle(
-                    fontFamily: "Epilogue",
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.amber),
-                textAlign: TextAlign.center,
-              ),
-            )
           ],
         ));
 
     return Stack(
-      alignment: Alignment(0, 2.3),
+      alignment: Alignment(0, 2.7),
       children: [
         image,
         Stack(
-          alignment: Alignment(0.7, 0.7),
+          alignment: Alignment(0.7, 0.3),
           children: [
             detail,
             FloatingActionButtonGreen(

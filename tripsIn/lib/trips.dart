@@ -18,7 +18,7 @@ class Trips extends StatefulWidget {
 }
 
 class _TripsState extends State<Trips> {
-  int indexTap = 0;
+  int indexTap = 2;
   UserBloc? userBloc;
 
   void onTapTapped(int index) {
